@@ -1,13 +1,10 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
-import seaborn as sns
 from pickle import load
-import matplotlib.pyplot as plt
 from sklearn.preprocessing import LabelEncoder, OrdinalEncoder
 import plotly.express as px
 import plotly.graph_objects as go
-from plotly.subplots import make_subplots
+
 
 # Page configuration
 st.set_page_config(
@@ -103,7 +100,7 @@ def load_models_and_data():
         model_dict = {
             'top1': load(open('top1_xgb_model_3.pkl', 'rb')),
             'top2': load(open('top2_rf_model_1.pkl', 'rb')),
-            'top3': load(open('top3_svm_model_3.pkl', 'rb')),
+            # 'top3': load(open('top3_svm_model_3.pkl', 'rb')),
         }
         
         custom_na_filter = ['', '#N/A', '#N/A N/A', '#NA', '-1.#IND', '-1.#QNAN', '-NaN', '-nan', 
@@ -130,12 +127,12 @@ MODEL_CONFIG = {
         'input_cols': [],  # Empty list indicates all fields are editable
         'processed_cols': []
     },
-    'top3': {
-        'name': 'SVM Model',
-        'description': ' Top 3 model',
-        'input_cols': ['job_satisfaction', 'salary', 'field_of_study'],
-        'processed_cols': ['job_satisfaction', 'salary', 'field_of_study_Medicine', 'field_of_study_Computer Science']
-    }
+    # 'top3': {
+    #     'name': 'SVM Model',
+    #     'description': ' Top 3 model',
+    #     'input_cols': ['job_satisfaction', 'salary', 'field_of_study'],
+    #     'processed_cols': ['job_satisfaction', 'salary', 'field_of_study_Medicine', 'field_of_study_Computer Science']
+    # }
 }
 
 def encode_categorical_columns(df, config):
